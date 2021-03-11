@@ -13,6 +13,14 @@ eureka:
       #\u8BBE\u7F6E\u4E0EEureka server\u4EA4\u4E92\u7684\u5730\u5740\u67E5\u8BE2\u670D\u52A1\u548C\u6CE8\u518C\u670D\u52A1\u90FD\u9700\u8981\u4F9D\u8D56\u8FD9\u4E2A\u5730\u5740\u3002
 #      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
       defaultZone: http://eureka7002.com:7002/eureka/ # \u96C6\u7FA4
+
+##\u5173\u95ED\u81EA\u6211\u4FDD\u62A4
+#  server:
+#    #\u5173\u95ED\u81EA\u6211\u4FDD\u62A4\u673A\u5236\uFF0C\u4FDD\u8BC1\u4E0D\u53EF\u7528\u670D\u52A1\u88AB\u53CA\u65F6\u8E22\u9664
+#    enable-self-preservation: false
+#    #\u53D1\u73B0\u670D\u52A1\u4E0D\u53EF\u7528\u540E\u5254\u9664\u9700\u8981\u7B49\u5F85\u7684\u65F6\u95F4
+#    eviction-interval-timer-in-ms: 2000
+
 spring:
   application:
     name: cloud-eureka-service1
