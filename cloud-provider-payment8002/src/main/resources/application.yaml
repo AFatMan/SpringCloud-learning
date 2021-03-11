@@ -1,9 +1,17 @@
 server:
-  port: 8080
+  port: 8002
 spring:
   application:
-    name: cloud-order-service
-
+    name: cloud-payment-service
+  datasource:
+    url: jdbc:mysql://localhost:3306/cloud
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+#mybatis:
+#  mapper-locations: classpath:mapper/*.xml
+mybatis-plus:
+  type-aliases-package: com.mystudy.cloudapicommon.entity
 
 eureka:
   client:

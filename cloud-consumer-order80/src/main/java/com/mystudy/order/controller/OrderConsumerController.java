@@ -17,8 +17,16 @@ import org.springframework.web.client.RestTemplate;
 @Controller
 public class OrderConsumerController {
 
-    private final String URL_GET_PAYMENT = "http://localhost:8001/payment/get/";
-    private final String URL_CREATE_PAYMENT = "http://localhost:8001/payment/create";
+    /*
+    单机eureka版:可使用ip地址加端口写死
+     */
+    // private final String CLOUD_PAYMENT_SERVICE = "http://localhost:8001/";
+    // 集群后通过微服务名称调用相关类,需要配合@LoadBalanced注解提供负载均衡功能
+    private final String CLOUD_PAYMENT_SERVICE = "http://CLOUD-PAYMENT-SERVICE/";
+
+    private final String URL_GET_PAYMENT = CLOUD_PAYMENT_SERVICE+"payment/get/";
+    private final String URL_CREATE_PAYMENT = CLOUD_PAYMENT_SERVICE + "payment/create";
+
     @Autowired
     RestTemplate restTemplate;
 

@@ -3,6 +3,7 @@ package com.mystudy.payment;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
 /**
  * @Author 刘健生
@@ -10,9 +11,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @Description
  */
 @MapperScan("com.mystudy.payment.dao")
+@EnableEurekaClient //标注为eureka客户端,提供或消费服务
 @SpringBootApplication
-public class PaymentMain {
+public class CloudProviderPayment8001 {
     public static void main(String[] args) {
-        SpringApplication.run(PaymentMain.class,args);
+        SpringApplication.run(CloudProviderPayment8001.class,args);
     }
 }
