@@ -1,7 +1,7 @@
 package com.mystudy.payment.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.mystudy.payment.entity.Payment;
+import com.mystudy.cloudapicommon.entity.Payment;
 
 /**
  * @Author 刘健生

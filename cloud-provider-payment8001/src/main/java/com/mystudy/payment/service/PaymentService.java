@@ -2,8 +2,8 @@ package com.mystudy.payment.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.mystudy.cloudapicommon.entity.Payment;
 import com.mystudy.payment.dao.PaymentDao;
-import com.mystudy.payment.entity.Payment;
 
 /**
  * @Author 刘健生

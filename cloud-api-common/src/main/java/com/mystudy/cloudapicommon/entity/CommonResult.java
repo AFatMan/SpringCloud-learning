@@ -1,4 +1,4 @@
-package com.mystudy.order.entity;
+package com.mystudy.cloudapicommon.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

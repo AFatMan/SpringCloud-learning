@@ -11,5 +11,5 @@ spring:
 #mybatis:
 #  mapper-locations: classpath:mapper/*.xml
 mybatis-plus:
-  type-aliases-package: com.mystudy.payment.entity
+  type-aliases-package: com.mystudy.cloudapicommon.entity
 

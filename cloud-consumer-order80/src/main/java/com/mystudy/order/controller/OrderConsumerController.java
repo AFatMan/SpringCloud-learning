@@ -1,7 +1,7 @@
 package com.mystudy.order.controller;
 
-import com.mystudy.order.entity.CommonResult;
-import com.mystudy.order.entity.Payment;
+import com.mystudy.cloudapicommon.entity.CommonResult;
+import com.mystudy.cloudapicommon.entity.Payment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +18,7 @@ import org.springframework.web.client.RestTemplate;
 public class OrderConsumerController {
 
     private final String URL_GET_PAYMENT = "http://localhost:8001/payment/get/";
+    private final String URL_CREATE_PAYMENT = "http://localhost:8001/payment/create";
     @Autowired
     RestTemplate restTemplate;
 
@@ -25,6 +26,12 @@ public class OrderConsumerController {
     @ResponseBody
     public CommonResult<Payment> getPaymentFromPaymentService(@PathVariable("id") Long id){
 
-        return restTemplate.getForObject(URL_GET_PAYMENT +id,CommonResult.class);
+        return restTemplate.getForObject(URL_GET_PAYMENT +id, CommonResult.class);
+    }
+
+    @GetMapping("/order/consumer/createPayment")
+    @ResponseBody
+    public CommonResult savePaymentFromPaymentService(Payment payment){
+        return restTemplate.postForObject(URL_CREATE_PAYMENT,payment ,CommonResult.class);
     }
 }

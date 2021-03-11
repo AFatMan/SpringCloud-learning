@@ -1,8 +1,8 @@
 package com.mystudy.payment.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.mystudy.cloudapicommon.entity.Payment;
 import com.mystudy.payment.dao.PaymentDao;
-import com.mystudy.payment.entity.Payment;
 import com.mystudy.payment.service.PaymentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

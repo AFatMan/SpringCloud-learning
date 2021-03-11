@@ -1,6 +1,5 @@
-package com.mystudy.payment.entity;
+package com.mystudy.cloudapicommon.entity;
 
-import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,8 +13,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Payment {
-
-    @TableId("id")
     private Long id;
     private String serial;
 }
