@@ -22,3 +22,6 @@ eureka:
     service-url:
 #      defaultZone: http://localhost:7001/eureka # 单机版
       defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka #集群版
+  instance:
+    prefer-ip-address: true #访问eureka页面信息有IP信息提示，（就是将鼠标指针移至paymentService01，paymentService02名下，会有IP地址提示）
+    instance-id: paymentService01 #主机名称：服务名称修改（也就是将IP地址，换成可读性高的名字）
