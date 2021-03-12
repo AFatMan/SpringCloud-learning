@@ -13,6 +13,7 @@
 
     <dependencies>
         <!--eureka-client-->
+        <!--已集成ribbon(@LoadBalance)-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
