@@ -2,13 +2,20 @@ package com.mystudy.order.controller;
 
 import com.mystudy.cloudapicommon.entity.CommonResult;
 import com.mystudy.cloudapicommon.entity.Payment;
+import com.mystudy.order.lb.LoadBalancer;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.client.ServiceInstance;
+import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
+
+import javax.annotation.Resource;
+import java.net.URI;
+import java.util.List;
 
 /**
  * @Author 刘健生
@@ -17,6 +24,12 @@ import org.springframework.web.client.RestTemplate;
  */
 @Controller
 public class OrderConsumerController {
+
+    @Resource
+    private LoadBalancer loadBalancer;
+
+    @Resource
+    private DiscoveryClient discoveryClient;
 
     /*
     单机eureka版:可使用ip地址加端口写死
@@ -62,5 +75,26 @@ public class OrderConsumerController {
     @ResponseBody
     public CommonResult savePaymentFromPaymentService(Payment payment){
         return restTemplate.postForObject(URL_CREATE_PAYMENT,payment ,CommonResult.class);
+    }
+
+    /**
+     * 测试手写轮询规则
+     * @return
+     */
+    @GetMapping(value = "/consumer/payment/lb")
+    @ResponseBody
+    public String getPaymentLB()
+    {
+        List<ServiceInstance> instances = discoveryClient.getInstances("CLOUD-PAYMENT-SERVICE");
+
+        if(instances == null || instances.size() <= 0){
+            return null;
+        }
+
+        ServiceInstance serviceInstance = loadBalancer.instances(instances);
+        URI uri = serviceInstance.getUri();
+
+        return restTemplate.getForObject(uri+"/payment/lb",String.class);
+
     }
 }

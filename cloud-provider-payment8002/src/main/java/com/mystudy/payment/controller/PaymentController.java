@@ -45,5 +45,13 @@ public class PaymentController {
         return new CommonResult<>(200, "查询用户成功,server端口:"+serverPort, byId);
     }
 
+    /**
+     * 手写轮询规则
+     * @return
+     */
+    @GetMapping(value = "/payment/lb")
+    public String getPaymentLB() {
+        return serverPort;//返回服务接口
+    }
 
 }
