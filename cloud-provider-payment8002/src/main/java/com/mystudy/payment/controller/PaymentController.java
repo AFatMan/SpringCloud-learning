@@ -54,4 +54,18 @@ public class PaymentController {
         return serverPort;//返回服务接口
     }
 
+    /**
+     * 测试超时连接
+     * @return
+     */
+    @GetMapping(value = "/payment/timeOut")
+    public String getPaymentTimeOut() {
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return serverPort;//返回服务接口
+    }
+
 }
