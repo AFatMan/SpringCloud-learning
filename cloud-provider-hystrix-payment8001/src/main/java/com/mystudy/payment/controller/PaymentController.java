@@ -20,28 +20,23 @@ public class PaymentController {
     @Value("${server.port}")
     private String servicePort;
 
-    /**
-     * 正常访问
-     *
-     * @param id
-     * @return
-     */
+    // 正常访问
     @GetMapping("/payment/hystrix/ok/{id}")
     public String paymentInfo_OK(@PathVariable("id") Integer id) {
         return paymentService.getPaymentInfo_OK(id);
     }
 
-    /**
-     * 超时访问
-     *
-     * @param id
-     * @return
-     */
+    // 超时访问
     @GetMapping("/payment/hystrix/timeout/{id}")
     public String paymentInfo_TimeOut(@PathVariable("id") Integer id) {
         return paymentService.getPaymentInfo_TimeOut(id);
 
     }
 
-
+    //====服务熔断
+    @GetMapping("/payment/hystrix/circuit/{id}")
+    public String paymentCircuitBreaker(@PathVariable("id") Integer id)
+    {
+        return paymentService.paymentCircuitBreaker(id);
+    }
 }

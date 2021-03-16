@@ -8,4 +8,5 @@ package com.mystudy.payment.service;
 public interface PaymentService {
     String getPaymentInfo_OK(Integer i);
     String getPaymentInfo_TimeOut(Integer i);
+    String paymentCircuitBreaker(Integer id) ;
 }
