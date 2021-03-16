@@ -26,7 +26,7 @@ public class OrderController {
     }
 
 
-    // 使用全局服务降级
+    // 使用全局服务降级,移除此指定
     // @HystrixCommand(
     //         // 当调用此方法发生服务熔断时,兜底方法的方法名
     //         fallbackMethod = "fallbackTimeOut",
@@ -34,7 +34,7 @@ public class OrderController {
     //                 // 超时时间
     //                 @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "4000")}
     // )
-    @HystrixCommand
+    @HystrixCommand //熔断、服务降级
     @GetMapping("consumer/payment/hystrix/timeout/{id}")
     public String timeOut(@PathVariable("id") Integer id) {
         return paymentHystrixService.paymentInfo_TimeOut(id);
