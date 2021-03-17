@@ -30,9 +30,9 @@ spring:
             - Cookie=chocolate, ch.p
             # 带指定请求头的参数的CURL命令,更多类型参考com.mystudy.gateway.CloudGateway9527文档注释
             - Header=X-Request-Id, \d+Header=X-Request-Id, \d+
-            - HOST=**.mystudy.com # 主机地址
+            - Host=**.mystudy.com # 主机地址
             - Method=GET # 请求方法
-            - QUERY=username,\d+ #参数username的值必须为整数
+            - Query=username,\d+ #参数username的值必须为整数
             # 总结:Predicate就是为了实现一组匹配规则，让请求过来找到对应的Route进行处理。
 
 
