@@ -1,6 +1,7 @@
 package com.mystudy.config.controller;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,7 +18,15 @@ import org.springframework.web.bind.annotation.RestController;
  * @Date 2021-03-17 18:11
  * @Description
  */
+/*
+ * 配置客户端 实现手动刷新服务端最新的配置
+ *  1,引入spring-boot-starter-actuator包
+ *  2,修改yaml,暴露actuator端点
+ *  3,在需要获取最新配置的类上添加@RefreshScope注解
+ *  4,手动发送刷新请求[post]:   curl  -X "http://localhost:3355/actuator/refresh"
+ */
 @RestController
+@RefreshScope
 public class ConfigClientController
 {
     @Value("${config.info}")
