@@ -19,10 +19,22 @@ spring:
         ####读取分支
         default-label: main
 #      label: main
-
+  #rabbitmq相关配置 15672是Web管理界面的端口；5672是MQ访问的端口
+  rabbitmq:
+    password: guest
+    username: guest
+    host: localhost
+    port: 5672
 #服务注册到eureka地址
 eureka:
   client:
     service-url:
       #      defaultZone: http://localhost:7001/eureka # 单机版
       defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka #集群版
+
+##rabbitmq相关配置,暴露bus刷新配置的端点  调用命令刷新配置:curl -X POST "http://localhost:3344/actuator/bus-refresh"
+management:
+  endpoints: #暴露bus刷新配置的端点
+    web:
+      exposure:
+        include: 'bus-refresh'
