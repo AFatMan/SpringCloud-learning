@@ -32,7 +32,10 @@ eureka:
       #      defaultZone: http://localhost:7001/eureka # 单机版
       defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka #集群版
 
-##rabbitmq相关配置,暴露bus刷新配置的端点  调用命令刷新配置:curl -X POST "http://localhost:3344/actuator/bus-refresh"
+##rabbitmq相关配置
+#调用命令刷新配置:
+# 全局广播 curl -X POST "http://localhost:3344/actuator/bus-refresh"
+# 动态刷新 curl -X POST "http://localhost:3344/actuator/bus-refresh/cloud-config-client:3355" 在后面加上微服务名以及端口号
 management:
   endpoints: #暴露bus刷新配置的端点
     web:
