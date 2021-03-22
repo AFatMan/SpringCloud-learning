@@ -97,4 +97,16 @@ public class OrderConsumerController {
         return restTemplate.getForObject(uri+"/payment/lb",String.class);
 
     }
+
+    /**
+     * 测试sleuth链路追踪
+     * @return
+     */
+    @GetMapping("/consumer/payment/zipkin")
+    @ResponseBody
+    public String paymentZipkin()
+    {
+        String result = restTemplate.getForObject(CLOUD_PAYMENT_SERVICE+"/payment/zipkin/", String.class);
+        return result;
+    }
 }
