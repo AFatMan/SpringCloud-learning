@@ -1,0 +1,16 @@
+server:
+  port: 8083
+
+spring:
+  application:
+    name: nacos-order-consumer
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+
+#nacos默认支持负载均衡->spring-cloud-starter-alibaba-nacos-discovery内含netflix-ribbon包
+
+#消费者将要去访问的微服务名称(注册成功进nacos的微服务提供者)(可配可不配,不配需要到controller里填上请求地址)
+service-url:
+  nacos-user-service: http://nacos-payment-provider
