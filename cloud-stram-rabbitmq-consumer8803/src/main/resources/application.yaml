@@ -20,6 +20,9 @@ spring:
           destination: studyExchange # 表示要使用的Exchange名称定义
           content-type: application/json # 设置消息类型，本次为json，文本则设置“text/plain”
           binder: defaultRabbit #设置要绑定的消息服务的具体设置
+          #微服务应用放置于同一个group中，就能够保证消息只会被其中一个应用消费一次。
+          #不同的组是可以重复消费的，同一个组内会发生竞争关系，只有其中一个可以消费。
+          group: groupAA
 
 
 eureka:
