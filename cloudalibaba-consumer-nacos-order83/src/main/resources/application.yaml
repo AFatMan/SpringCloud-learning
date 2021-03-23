@@ -8,6 +8,8 @@ spring:
     nacos:
       discovery:
         server-addr: localhost:8848
+        #换成nginx的1111端口，做集群
+        #server-addr: 192.168.111.144:1111
 
 #nacos默认支持负载均衡->spring-cloud-starter-alibaba-nacos-discovery内含netflix-ribbon包
 
