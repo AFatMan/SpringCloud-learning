@@ -45,3 +45,6 @@ management:
 # strategy：流控模式，0表示直接，1表示关联，2表示链路；
 # controlBehavior：流控效果，0表示快速失败，1表示Warm Up，2表示排队等待；
 # clusterMode：是否集群。
+
+
+#可参考官网推送nacos例子:https://github.com/alibaba/Sentinel/tree/master/sentinel-dashboard/src/test/java/com/alibaba/csp/sentinel/dashboard/rule/nacos
