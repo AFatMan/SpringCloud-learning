@@ -26,7 +26,8 @@ public class CircleBreakController {
     @RequestMapping("/consumer/fallback/{id}")
     // @SentinelResource(value = "fallback")//没有配置
     // @SentinelResource(value = "fallback", fallback = "handlerFallback") //fallback只负责业务异常
-    @SentinelResource(value = "fallback",blockHandler = "blockHandler") //blockHandler只负责sentinel控制台配置违规
+    // @SentinelResource(value = "fallback",blockHandler = "blockHandler") //blockHandler只负责sentinel控制台配置违规
+    @SentinelResource(value = "fallback",fallback = "handlerFallback",blockHandler = "blockHandler") //同时配置fallback以及blockHandler,当出现限流降级时,只进入blockHandler处理(blockHandler>fallback),当没出现限流降级时,进入fallback处理
     public CommonResult<Payment> fallback(@PathVariable Long id)
     {
         CommonResult<Payment> result = restTemplate.getForObject(SERVICE_URL + "/paymentSQL/"+id,CommonResult.class,id);
@@ -40,11 +41,11 @@ public class CircleBreakController {
         return result;
     }
 
-    // //本例是fallback
-    // public CommonResult handlerFallback(@PathVariable  Long id,Throwable e) {
-    //     Payment payment = new Payment(id,"null");
-    //     return new CommonResult<>(444,"兜底异常handlerFallback,exception内容  "+e.getMessage(),payment);
-    // }
+    //本例是fallback
+    public CommonResult handlerFallback(@PathVariable Long id, Throwable e) {
+        Payment payment = new Payment(id, "null");
+        return new CommonResult<>(444, "兜底异常handlerFallback,exception内容  " + e.getMessage(), payment);
+    }
 
     //本例是blockHandler
     public CommonResult blockHandler(@PathVariable  Long id, BlockException blockException) {
