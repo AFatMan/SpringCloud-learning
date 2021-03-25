@@ -1,0 +1,28 @@
+server:
+  port: 2001
+spring:
+  application:
+    name: seata-order-service
+  cloud:
+    alibaba:
+      seata:
+        #自定义事务组名称需要与seata-server中的对应
+        tx-service-group: my_test_tx_group
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+  datasource:
+    url: jdbc:mysql://localhost:3306/seata_order
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+#mybatis:
+#  mapper-locations: classpath:mapper/*.xml
+mybatis-plus:
+  type-aliases-package: com.mystudy.order.entity
+
+
+logging:
+  level:
+    io:
+      seata: info
