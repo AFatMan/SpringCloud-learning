@@ -27,6 +27,12 @@ public class AccountServiceImpl extends ServiceImpl<AccountMapper, Account> impl
     @Override
     public void decrease(Long userId, BigDecimal money) {
         log.info("------->account-service中扣减账户余额开始");
+        // 模拟超时异常,测试@GlobalTransactional全局事务注解作用
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         accountMapper.decrease(userId, money);
         log.info("------->account-service中扣减账户余额结束");
     }

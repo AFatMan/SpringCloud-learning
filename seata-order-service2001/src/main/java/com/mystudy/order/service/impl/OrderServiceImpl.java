@@ -6,6 +6,7 @@ import com.mystudy.order.entity.Order;
 import com.mystudy.order.service.AccountService;
 import com.mystudy.order.service.OrderService;
 import com.mystudy.order.service.StorageService;
+import io.seata.spring.annotation.GlobalTransactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -33,6 +34,8 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper,Order> implements 
     private AccountService accountService;
 
     @Override
+    // name 命名风格不作限制,只限制唯一性
+    @GlobalTransactional(name = "order_service_save",rollbackFor = Exception.class )
     public boolean save(Order entity) {
         log.info("----->开始新建订单");
         //1 新建订单
@@ -43,7 +46,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper,Order> implements 
         storageService.decrease(entity.getProductId(),entity.getCount());
         log.info("----->订单微服务开始调用库存，做扣减end");
 
-        //3 扣减账户
+        //3 扣减账户 --- 超时,事务回滚
         log.info("----->订单微服务开始调用账户，做扣减Money");
         accountService.decrease(entity.getUserId(),entity.getMoney());
         log.info("----->订单微服务开始调用账户，做扣减end");
